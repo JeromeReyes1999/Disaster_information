@@ -23,11 +23,9 @@ class Admin::CategoriesController < ApplicationController
     end
 
     def destroy
-      # if @category.post.size.zero?
-      #   @category.destroy
-      # else
-      #   flash[:notice] = "this disaster type is currently in use in a post"
-      # end
+      if @category.destroy
+        flash[:alert] = "this disaster type is currently in use in a post"
+      end
       redirect_to admin_categories_path
     end
 
@@ -43,7 +41,7 @@ class Admin::CategoriesController < ApplicationController
     def check_admin
       unless current_user.admin?
         flash[:notice] = "You do not have permission"
-        # redirect_to posts_path
+        redirect_to posts_path
       end
     end
 
