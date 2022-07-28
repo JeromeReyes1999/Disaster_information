@@ -4,10 +4,9 @@
 <%= link_to "Log In", new_user_session_path, class: "btn btn-success float-right" unless current_user%>
 <h1>Post list</h1>
 
-
-<%= link_to 'My post', posts_path({filter_by: :user})  ,class: "btn btn-success float-right"%>
 <%= link_to 'Show All', posts_path, class: "btn btn-success float-right"%>
-
+<%= link_to 'My post', posts_path({filter_by: :user})  ,class: "btn btn-success float-right"%>
+<br>
 <% @categories.each do |category| %>
   <%= link_to category.name, posts_path({id: category, filter_by: :category}), class: "btn btn-success float-right"%>
 <% end %>
