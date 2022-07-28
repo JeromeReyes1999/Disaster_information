@@ -5,7 +5,14 @@ class PostsController < ApplicationController
   require 'open-uri'
 
   def index
-    @posts = Post.all
+    if params[:filter_by]== "user"
+      @posts = current_user.posts.order(comments_count: :desc)
+    elsif params[:filter_by]== "category"
+      @posts = Post.where('category_id=?', params[:id]).order(comments_count: :desc)
+    else
+      @posts = Post.order(comments_count: :desc)
+    end
+    @categories = Category.all
   end
 
   def new

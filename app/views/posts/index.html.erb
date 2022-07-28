@@ -5,11 +5,19 @@
 <h1>Post list</h1>
 
 
+<%= link_to 'My post', posts_path({filter_by: :user})  ,class: "btn btn-success float-right"%>
+<%= link_to 'Show All', posts_path, class: "btn btn-success float-right"%>
+
+<% @categories.each do |category| %>
+  <%= link_to category.name, posts_path({id: category, filter_by: :category}), class: "btn btn-success float-right"%>
+<% end %>
 
 <table class="table table-striped table-hover">
   <thead>
   <tr>
-    <th scope="col">Rank</th>
+    <% if params[:filter_by]== nil %>
+        <th scope="col">Rank</th>
+    <% end%>
     <th scope="col">ID</th>
     <th scope="col">Creator</th>
     <th scope="col">Title</th>
@@ -24,14 +32,16 @@
   <tbody>
   <% @posts.each_with_index do |post, index| %>
     <tr>
-      <td><%= index + 1 %>
-        <% if index < 3 %>
-          <br>
-          <span class="badge bg-danger">
-              HOT
-          </span>
-        <% end %>
-      </td>
+      <% if params[:filter_by]== nil %>
+        <td><%= index + 1 %>
+          <% if index < 3 %>
+            <br>
+            <span class="badge bg-danger">
+                HOT
+            </span>
+          <% end %>
+        </td>
+      <% end %>
       <td><%= post.id %></td>
       <td><%= post.user.email %></td>
       <td><%= post.title %></td>
