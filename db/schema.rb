@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_28_114449) do
+ActiveRecord::Schema.define(version: 2022_07_28_115131) do
 
   create_table "categories", charset: "utf8mb4", force: :cascade do |t|
     t.string "name"
@@ -50,7 +50,13 @@ ActiveRecord::Schema.define(version: 2022_07_28_114449) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "comments_count"
+    t.bigint "region_id"
+    t.bigint "province_id"
+    t.bigint "city_id"
     t.index ["category_id"], name: "index_posts_on_category_id"
+    t.index ["city_id"], name: "index_posts_on_city_id"
+    t.index ["province_id"], name: "index_posts_on_province_id"
+    t.index ["region_id"], name: "index_posts_on_region_id"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
