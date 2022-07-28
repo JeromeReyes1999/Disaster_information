@@ -11,10 +11,6 @@
   <%= f.label :content %>
   <%= f.text_area :content, class: 'form-control' %>
 </div>
-<div class="form-group">
-  <%= f.label :address %>
-  <%= f.text_field :address, class: 'form-control' %>
-</div>
 <!--<div class="form-group">-->
   <%#= f.label :image %>
   <%#= f.file_field :image, class: 'form-control' %>
@@ -22,6 +18,18 @@
 <div class="form-group">
   <%= f.label :category %>
   <%= f.collection_select :category_id, Category.order(:name), :id, :name, {:include_blank => true}, {class: "form-control"} %>
+</div>
+<div class="form-group">
+  <%= f.label :region %>
+  <%= f.collection_select :region_id, Region.order(:name), :id, :name, {:include_blank => true}, {class: "form-control"} %>
+</div>
+<div class="form-group">
+  <%= f.label :province %>
+  <%= f.collection_select :province_id, Province.order(:name), :id, :name, {:include_blank => true}, {class: "form-control"} %>
+</div>
+<div class="form-group">
+  <%= f.label :city %>
+  <%= f.collection_select :city_id, City.order(:name), :id, :name, {:include_blank => true}, {class: "form-control"} %>
 </div>
 <div class="form-group">
   <%= f.submit class: 'btn btn-success' %>
