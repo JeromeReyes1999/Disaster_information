@@ -1,7 +1,7 @@
-<%= link_to 'Manage Disaster info', admin_disasters_path, class: 'btn btn-warning' if current_user&.admin? %>
+<%= link_to 'Manage Disaster info', admin_categories_path, class: 'btn btn-warning' if current_user&.admin? %>
 
 <%= link_to "Log Out", destroy_user_session_path, :method => :delete, class: "btn btn-warning float-right" if current_user%>
-<%= link_to "Log In", destroy_user_session_path, :method => :delete, class: "btn btn-success float-right" unless current_user%>
+<%= link_to "Log In", new_user_session_path, class: "btn btn-success float-right" unless current_user%>
 <h1>Post list</h1>
 
 
