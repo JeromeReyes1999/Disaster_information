@@ -25,12 +25,14 @@ gem 'mysql2'
 gem 'devise'
 gem 'rest-client'
 gem 'carrierwave', '~> 2.0'
-
+gem 'kaminari'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
+
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
