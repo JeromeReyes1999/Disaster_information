@@ -5,12 +5,16 @@ class PostsController < ApplicationController
   require 'open-uri'
 
   def index
+    @page = params[:page] || 1
+    @per = 5
+    @next_index = (@page.to_i*5)-5
+
     if params[:filter_by]== "user"
-      @posts = current_user.posts.order(comments_count: :desc)
+      @posts = current_user.posts.order(comments_count: :desc).includes(:user, :comments).page(params[:page]).per(@per)
     elsif params[:filter_by]== "category"
-      @posts = Post.where('category_id=?', params[:id]).order(comments_count: :desc)
+      @posts = Post.where('category_id=?', params[:id]).order(comments_count: :desc).includes(:user, :comments).page(params[:page]).per(@per)
     else
-      @posts = Post.order(comments_count: :desc)
+      @posts = Post.order(comments_count: :desc).includes(:user, :comments).page(params[:page]).per(@per)
     end
     @categories = Category.all
   end
