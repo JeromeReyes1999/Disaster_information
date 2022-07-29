@@ -33,6 +33,16 @@ class PostsController < ApplicationController
     end
   end
 
+  def redirect
+    @short = params[:short_url]
+    @url = Post.find_by(short_url: @short)
+    if @url.nil? #if 404
+      content_not_found
+    else
+      redirect_to post_path(@url)
+    end
+  end
+
   def edit; end
 
   def update
