@@ -23,6 +23,7 @@
     <th scope="col">Content</th>
     <th scope="col">Address</th>
     <th scope="col">Disaster</th>
+    <th scope="col">Image</th>
     <th scope="col">Short URL</th>
     <th scope="col">actions</th>
 
@@ -47,6 +48,7 @@
       <td><%= post.content %></td>
       <td><%= post.address %></td>
       <td><%= post.category.name %></td>
+      <td><%= image_tag "#{request.base_url}/#{post.image.url}" if post.image? %></td>
       <td><%= link_to "#{request.base_url}/#{post.short_url}", "#{request.base_url}/#{post.short_url}", target: :_self %></td>
       <td>
         <%= link_to :comments, post_comments_path(post), class: 'btn btn-info' %>

@@ -8,8 +8,9 @@ class Post < ApplicationRecord
   belongs_to :city
   has_many :comments, dependent: :restrict_with_error
 
+  mount_uploader :image, ImageUploader
 
-  before_create :generate_unique_number
+  before_create :generate_unique_number, :generate_address
 
   def generate_unique_number
     loop do
@@ -18,4 +19,10 @@ class Post < ApplicationRecord
     end
     self.short_url = @short
   end
+
+  def generate_address
+    user_address = "#{self.region.name}, #{self.province.name}, #{self.city.name}"
+    self.address = user_address
+  end
+
 end
